@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: laxg66/todo-backend
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongo:27017/todo
+            - name: JWT_SECRET
+              value: secret
+            - name: GMAIL_USERNAME
+              value: devopsshack2025@gmail.com
+            - name: GMAIL_PASSWORD
+              value: password123
